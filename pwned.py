@@ -15,7 +15,7 @@ def get_hash(password):
 def get_pwned(key):
     assert len(key) == 5
     res = requests.get(f"https://api.pwnedpasswords.com/range/{key}")
-    assert res.status_code
+    assert res.status_code == 200
     results = {key+l[0]: int(l[1]) for l in [line.split(":") for line in res.text.split("\r\n")]}
     return results
 
