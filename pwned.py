@@ -31,20 +31,19 @@ def get_credentials() -> Dict[str, Any]:
 
 
 def main():
-    count_ok = 0
     count_pwned = 0
-    for item in get_credentials():
+    credentials = get_credentials()
+    for item in credentials:
         password = item["login"]["password"].encode("utf-8")
         password_hash = get_hash(password)
         results = get_pwned(password_hash)
         pwned = password_hash in results
         if not pwned:
-            count_ok += 1
-        else:
-            count_pwned += 1
-            print(f"{item['name']} has been pwned!")
+            continue
+        count_pwned += 1
+        print(f"{item['name']} has been pwned!")
 
-    print(f"{count_pwned} of {count_ok} logins have been pwned.")
+    print(f"{count_pwned} of {len(credentials)} logins have been pwned.")
 
 if __name__ == "__main__":
     sys.exit(main())
