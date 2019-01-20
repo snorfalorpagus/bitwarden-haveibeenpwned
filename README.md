@@ -30,14 +30,21 @@ Enter your password and then copy the session token into the `BW_SESSION` enviro
 export BW_SESSION="SECRETKEYWILLBEHERE"
 ```
 
+Sync your local vault with the cloud:
+
+```
+bw sync
+```
+
 Then run the Python script:
 
 ```
 python pwned.py
 ```
 
-Any compromised passwords will be reported:
+Any compromised passwords will be reported.
 
 ```
-aninsecurewebsite.com HAS BEEN PWNED!!!
+aninsecurewebsite.com has been pwned!
+1 of 41 logins have been pwned.
 ```
