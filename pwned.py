@@ -1,7 +1,6 @@
 import subprocess
 import json
 import hashlib
-import re
 import requests
 from typing import Dict, Any
 import sys
@@ -44,6 +43,7 @@ def main():
         print(f"{item['name']} has been pwned!")
 
     print(f"{count_pwned} of {len(credentials)} logins have been pwned.")
+
 
 if __name__ == "__main__":
     sys.exit(main())
