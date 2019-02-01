@@ -33,6 +33,8 @@ def main():
     count_pwned = 0
     credentials = get_credentials()
     for item in credentials:
+        if not item["login"]["password"]:
+            continue
         password = item["login"]["password"].encode("utf-8")
         password_hash = get_hash(password)
         results = get_pwned(password_hash)
@@ -40,7 +42,7 @@ def main():
         if not pwned:
             continue
         count_pwned += 1
-        print(f"{item['name']} has been pwned!")
+        print(f"{item['name']}:{item['login']['username']} has been pwned!")
 
     print(f"{count_pwned} of {len(credentials)} logins have been pwned.")
 
